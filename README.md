@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
 
 ## Getting Started
@@ -38,3 +39,60 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+=======
+# Tic-Tac-Toe
+
+# Tic Tac Toe Game
+
+board = [" " for _ in range(9)]
+
+def print_board():
+    print()
+    print(board[0] + " | " + board[1] + " | " + board[2])
+    print("--+---+--")
+    print(board[3] + " | " + board[4] + " | " + board[5])
+    print("--+---+--")
+    print(board[6] + " | " + board[7] + " | " + board[8])
+    print()
+
+def check_winner(player):
+    win_conditions = [
+        [0,1,2], [3,4,5], [6,7,8],  # rows
+        [0,3,6], [1,4,7], [2,5,8],  # columns
+        [0,4,8], [2,4,6]            # diagonals
+    ]
+    for condition in win_conditions:
+        if all(board[i] == player for i in condition):
+            return True
+    return False
+
+def is_draw():
+    return " " not in board
+
+def play():
+    current_player = "X"
+    
+    while True:
+        print_board()
+        move = int(input(f"Player {current_player}, choose position (1-9): ")) - 1
+        
+        if board[move] != " ":
+            print("Invalid move! Try again.")
+            continue
+        
+        board[move] = current_player
+        
+        if check_winner(current_player):
+            print_board()
+            print(f"🎉 Player {current_player} wins!")
+            break
+        
+        if is_draw():
+            print_board()
+            print("🤝 It's a draw!")
+            break
+        
+        current_player = "O" if current_player == "X" else "X"
+
+play()
+>>>>>>> 681479eadfff620c47ae8b54533f19309679e9e6
